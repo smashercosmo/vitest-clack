@@ -1,0 +1,33 @@
+{
+  "name": "root",
+  "private": true,
+  "license": "MIT",
+  "author": "Vladislav Shkodin <smashercosmo@gmail.com>",
+  "type": "module",
+  "scripts": {
+    "build": "pnpm -r build",
+    "test": "pnpm -r test",
+    "format": "oxfmt",
+    "lint:ox": "oxlint --type-aware",
+    "lint:types": "tsc && pnpm -r lint:types",
+    "lint": "pnpm lint:ox && pnpm lint:types",
+    "update:deps": "pnpm up -r --latest --interactive"
+  },
+  "devDependencies": {
+    "@smashercosmo/configs": "catalog:dev",
+    "@types/node": "catalog:types",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "eslint-plugin-regexp": "catalog:lint",
+    "oxfmt": "catalog:dev",
+    "oxlint": "catalog:lint",
+    "oxlint-tsgolint": "catalog:lint"
+  },
+  "devEngines": {
+    "runtime": {
+      "name": "node",
+      "version": "^26.0.0",
+      "onFail": "download"
+    }
+  },
+  "packageManager": "pnpm@12.23.0"
+}

@@ -1,0 +1,35 @@
+packages:
+  - packages/*
+
+hoist: false
+saveExact: true
+catalogMode: strict
+cleanupUnusedCatalogs: true
+
+# `pnpm version -r` writes each package's CHANGELOG.md next to its package.json.
+versioning:
+  changelog:
+    storage: repository
+
+# `typescript` is TypeScript 6 on purpose: tsdown generates declarations with
+# its JavaScript API, which TypeScript 7 doesn't have. Type checking runs on
+# TypeScript 7, `@typescript/native`.
+peerDependencyRules:
+  allowedVersions:
+    "@smashercosmo/configs>typescript": "6"
+
+catalogs:
+  dev:
+    "@smashercosmo/configs": 0.3.0
+    oxfmt: 0.80.0
+    tsdown: 0.23.7
+  lint:
+    eslint-plugin-regexp: 3.3.3
+    oxlint: 1.95.0
+    oxlint-tsgolint: 7.0.2008
+  test:
+    vitest: 5.1.1
+  tools:
+    "@clack/prompts": 1.9.0
+  types:
+    "@types/node": 26.6.6

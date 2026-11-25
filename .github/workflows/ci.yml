@@ -1,0 +1,20 @@
+name: CI
+
+# The reusable CI workflow of smashercosmo/actions. Pull requests need a change
+# intent (`pnpm change`), then every run builds, lints, type checks, checks the
+# formatting and runs the tests with the root scripts of package.json.
+#
+# Make `ci / changeset` and `ci / check` required status checks of main, and
+# require branches to be up to date before merging.
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions: {}
+
+jobs:
+  ci:
+    permissions:
+      contents: read
+    uses: smashercosmo/actions/.github/workflows/ci.yml@04f838252f6ef4b869ae9e98d850ede141ca450a # v0.4.0

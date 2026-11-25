@@ -1,0 +1,7 @@
+{
+  "extends": "@smashercosmo/configs/ts/node",
+  "include": ["lib", "tests", "tsdown.config.ts", "vitest.config.ts"],
+  "compilerOptions": {
+    "tsBuildInfoFile": "node_modules/tsconfig.tsbuildinfo"
+  }
+}

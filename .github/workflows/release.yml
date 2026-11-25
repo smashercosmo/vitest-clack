@@ -1,0 +1,37 @@
+name: Release
+
+# The reusable release workflow of smashercosmo/actions. Every push to main
+# either opens (or updates) the release PR from the pending change intents, or,
+# right after the release PR was merged, runs CI on the commit and stages
+# vitest-clack on npm. Approve the staged version with `pnpm stage approve`
+# (2FA): the GitHub release, and its `v<version>` tag, follow once the version
+# is on npm. Running it manually without pending intents takes the release path,
+# e.g. to retry a failed release.
+#
+# The npm trusted publisher of vitest-clack names this file and the `release`
+# environment, which has the GitHub App's private key. The client ID is a
+# repository variable, as this job can't have an environment.
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  release:
+    # The most the jobs of the workflow can get. Each of them asks only for
+    # what it needs: the GitHub releases need `contents: write`, staging on npm
+    # (OIDC) `id-token: write`. `pages: write` is for the docs deployment,
+    # which is off here: GitHub checks the permissions of skipped jobs too, so
+    # release.yml requires it from v0.5.0 on.
+    permissions:
+      contents: write
+      id-token: write
+      pages: write
+    uses: smashercosmo/actions/.github/workflows/release.yml@04f838252f6ef4b869ae9e98d850ede141ca450a # v0.4.0
+    with:
+      app-client-id: ${{ vars.RELEASE_BOT_CLIENT_ID }}
+      npm: true
+    secrets:
+      app-private-key: ${{ secrets.RELEASE_BOT_PRIVATE_KEY }}

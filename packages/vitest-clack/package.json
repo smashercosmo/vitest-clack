@@ -1,0 +1,67 @@
+{
+  "name": "vitest-clack",
+  "version": "0.1.0",
+  "description": "Vitest fixtures for testing CLIs built with @clack/prompts: drive prompts from a fake terminal and assert on what users see.",
+  "keywords": [
+    "clack",
+    "cli",
+    "prompts",
+    "testing",
+    "vitest"
+  ],
+  "homepage": "https://github.com/smashercosmo/vitest-clack/tree/main/packages/vitest-clack#readme",
+  "bugs": {
+    "url": "https://github.com/smashercosmo/vitest-clack/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smashercosmo/vitest-clack.git",
+    "directory": "packages/vitest-clack"
+  },
+  "license": "MIT",
+  "author": "Vladislav Shkodin <smashercosmo@gmail.com>",
+  "sideEffects": false,
+  "type": "module",
+  "imports": {
+    "#lib/*.js": "./lib/*.ts",
+    "#tests/*.js": "./tests/*.ts"
+  },
+  "files": [
+    "dist",
+    "CHANGELOG.md",
+    "README.md"
+  ],
+  "exports": {
+    ".": "./lib/index.ts",
+    "./serializer": "./lib/serializer.ts",
+    "./*": "./*"
+  },
+  "publishConfig": {
+    "exports": {
+      ".": "./dist/index.js",
+      "./serializer": "./dist/serializer.js",
+      "./*": "./*"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "test": "vitest run",
+    "lint:types": "tsc"
+  },
+  "devDependencies": {
+    "@clack/prompts": "catalog:tools",
+    "@smashercosmo/configs": "catalog:dev",
+    "@types/node": "catalog:types",
+    "@typescript/native": "npm:typescript@7.0.2",
+    "tsdown": "catalog:dev",
+    "typescript": "npm:@typescript/typescript6@6.0.2",
+    "vitest": "catalog:test"
+  },
+  "peerDependencies": {
+    "@clack/prompts": ">=1.8.0",
+    "vitest": ">=5.0.0"
+  },
+  "engines": {
+    "node": ">=24.0.0"
+  }
+}
